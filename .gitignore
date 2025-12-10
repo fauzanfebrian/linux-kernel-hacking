@@ -1,0 +1,17 @@
+# Ignore the Kernel Source Tree
+linux-*/
+linux/
+
+# Ignore Disk Images
+*.img
+*.qcow2
+
+# Ignore Build Artifacts
+*.o
+*.ko
+*.cmd
+modules.order
+Module.symvers
+
+# Ignore System temporary files
+.DS_Store

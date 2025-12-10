@@ -1,0 +1,1 @@
+set args ubd0=fs.img root=/dev/ubda rw handle SIGSEGV pass nostop noprint init=/bin/dash -i
