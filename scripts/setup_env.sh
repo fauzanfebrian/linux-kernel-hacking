@@ -9,7 +9,6 @@ KERNEL_VER="6.17.7"
 KERNEL_TAR="linux-${KERNEL_VER}.tar.xz"
 KERNEL_URL="https://cdn.kernel.org/pub/linux/kernel/v6.x/${KERNEL_TAR}"
 DIR_NAME="linux-${KERNEL_VER}"
-MY_CONFIG="configs/um_config"
 
 echo "[+] Updating package lists..."
 sudo apt update
@@ -30,12 +29,5 @@ wget ${KERNEL_URL}
 echo "[+] Extracting tarball (this may take a moment)..."
 tar xJvf ${KERNEL_TAR}
 rm -f ${KERNEL_TAR}
-
-echo "[+] Linking configuration..."
-if [ -f "$MY_CONFIG" ]; then
-    ln -sf "$(pwd)/$MY_CONFIG" "${DIR_NAME}/.config"
-else
-    echo "[-] No saved config found at $MY_CONFIG."
-fi
 
 echo "[SUCCESS] Kernel source extracted to ${DIR_NAME}/"
