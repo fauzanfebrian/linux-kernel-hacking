@@ -43,15 +43,17 @@ Since I am following the Operating System Camp curriculum, I follow this loop:
 # 2. Create filesystem image (Debian Trixie, requires sudo)
 ./scripts/setup_fs.sh
 
-# 3. Build kernel
-cd linux-6.17.7
-make ARCH=um -j4
+# 3. (optional) Configure kernel via top-level helper
+make menuconfig
 
-# 4. Run UML kernel
-./linux ubd0=../fs.img root=/dev/ubda rw init=/bin/dash
+# 4. Build kernel
+make build
 
-# 5. Debug with GDB
-gdb ./linux -x ../gdb_cmd
+# 5. Run UML kernel
+make run
+
+# 6. Debug with GDB
+make gdb
 ```
 
 ---
