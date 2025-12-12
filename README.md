@@ -54,6 +54,9 @@ make run
 
 # 6. Debug with GDB
 make gdb
+
+# 7. Synchronize modules linkage
+make syncmodules
 ```
 
 ---
