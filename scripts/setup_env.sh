@@ -30,4 +30,7 @@ echo "[+] Extracting tarball (this may take a moment)..."
 tar xJvf ${KERNEL_TAR}
 rm -f ${KERNEL_TAR}
 
+echo "[+] Linkage configs..."
+ln -f "${PWD}/configs/.config" "${DIR_NAME}/.config"
+
 echo "[SUCCESS] Kernel source extracted to ${DIR_NAME}/"
