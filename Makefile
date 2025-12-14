@@ -2,7 +2,7 @@
 KERNEL_DIR := linux-6.17.7
 ARCH      ?= um
 
-.PHONY: build menuconfig gdb run syncmodules
+.PHONY: build menuconfig gdb run syncmodules setup
 
 menuconfig:
 	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) menuconfig
@@ -19,3 +19,7 @@ gdb:
 
 syncmodules:
 	ln -f ./modules/* ./linux-6.17.7/drivers/misc/
+
+setup:
+	bash ./scripts/setup_env.sh
+	bash ./scripts/build_fs.sh
