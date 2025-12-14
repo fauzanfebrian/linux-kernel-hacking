@@ -5,7 +5,7 @@
 # Based on the "Operating System Camp" material
 
 # Configuration
-KERNEL_VER="6.17.7"
+KERNEL_VER="${KERNEL_VER:-6.17.7}"
 KERNEL_TAR="linux-${KERNEL_VER}.tar.xz"
 KERNEL_URL="https://cdn.kernel.org/pub/linux/kernel/v6.x/${KERNEL_TAR}"
 DIR_NAME="linux-${KERNEL_VER}"

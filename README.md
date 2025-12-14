@@ -38,24 +38,21 @@ Since I am following the Operating System Camp curriculum, I follow this loop:
 
 ```bash
 # 1. Setup environment (downloads kernel 6.17.7)
-./scripts/setup_env.sh
+make setup
 
-# 2. Create filesystem image (Debian Trixie, requires sudo)
-./scripts/setup_fs.sh
-
-# 3. (optional) Configure kernel via top-level helper
+# 2. (optional) Configure kernel via top-level helper
 make menuconfig
 
-# 4. Build kernel
+# 3. Build kernel
 make build
 
-# 5. Run UML kernel
+# 4. Run UML kernel
 make run
 
-# 6. Debug with GDB
+# 5. Debug with GDB
 make gdb
 
-# 7. Synchronize modules linkage
+# 6. Synchronize modules linkage
 make syncmodules
 ```
 

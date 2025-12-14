@@ -11,6 +11,11 @@ MOUNT_POINT="/mnt/linux-kernel-hacking"
 DISTRO_CODENAME="trixie"
 REPO_URL="https://ftp.debian.org/debian"
 
+if [ -f "${IMG_NAME}" ]; then
+    echo "[!] Filesystem image ${IMG_NAME} already exists. Skipping setup."
+    exit 0
+fi
+
 echo "[+] Starting Root Filesystem Setup for Linux Mint/Ubuntu..."
 
 echo "[+] Creating 500MB sparse file ${IMG_NAME}..."
