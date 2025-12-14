@@ -77,3 +77,4 @@ obj-y				+= keba/
 obj-y				+= amd-sbi/
 obj-$(CONFIG_MISC_RP1)		+= rp1/
 obj-$(CONFIG_HELLO)             += hello.o
+obj-$(CONFIG_HELLO_RUST)        += hello_rust.o

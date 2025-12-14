@@ -650,6 +650,13 @@ config HELLO
 	help
 		This module is your first step toward extending the Linux kernel.
 
+config HELLO_RUST
+	tristate "Hello-World-style example for a Linux kernel module in Rust"
+	depends on RUST
+	default n
+	help
+		This is a simple example of a Linux kernel module written in Rust.
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
