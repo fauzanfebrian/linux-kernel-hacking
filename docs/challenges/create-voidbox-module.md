@@ -1,7 +1,7 @@
 # Void Box (`/dev/voidbox`)
 
 Challenger: Gemini 3.0
-* **Status:** Draft / In-Progress
+* **Status:** In-Progress
 * **Target:** Linux Kernel 6.17.7 (UML)
 * **Difficulty:** Low-Level Entry
 
