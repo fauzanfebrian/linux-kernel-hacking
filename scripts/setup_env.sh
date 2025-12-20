@@ -31,7 +31,6 @@ tar xJvf ${KERNEL_TAR}
 rm -f ${KERNEL_TAR}
 
 echo "[+] Linkage configs..."
-ln -f "${PWD}/configs/.config" "${DIR_NAME}/.config"
 ln -f "${PWD}/configs/rust/kernel/*" "${DIR_NAME}/rust/kernel/"
 
 echo "[SUCCESS] Kernel source extracted to ${DIR_NAME}/"

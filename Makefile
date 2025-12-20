@@ -1,7 +1,8 @@
 # Kernel Configuration
-KERNEL_VER := 6.17.7
-KERNEL_DIR := linux-$(KERNEL_VER)
-ARCH       ?= um
+KERNEL_VER 		:= 6.17.7
+KERNEL_DIR 		:= linux-$(KERNEL_VER)
+ARCH       		?= um
+LOCAL_CONFIG 	:= $(shell pwd)/configs/.config
 
 # Color codes for the help output
 BLUE := \033[36m
@@ -17,10 +18,10 @@ setup: ## Run setup scripts to fetch kernel and build FS
 	KERNEL_VER=$(KERNEL_VER) bash ./scripts/build_fs.sh
 
 menuconfig: ## Configure kernel options (ncurses)
-	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) menuconfig
+	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) KCONFIG_CONFIG=$(LOCAL_CONFIG) menuconfig
 
 build: ## Compile the kernel with -j4
-	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) -j4
+	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) KCONFIG_CONFIG=$(LOCAL_CONFIG) -j4
 
 run: ## Boot User-Mode Linux with fs.img
 	./$(KERNEL_DIR)/linux ubd0=./fs.img root=/dev/ubda rw init=/bin/dash || true; \

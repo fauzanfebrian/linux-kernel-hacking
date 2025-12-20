@@ -12,6 +12,7 @@ linux/
 *.cmd
 modules.order
 Module.symvers
+configs/.config.old
 
 # Ignore System temporary files
 .DS_Store
