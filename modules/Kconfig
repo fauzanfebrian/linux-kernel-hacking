@@ -657,6 +657,12 @@ config HELLO_RUST
 	help
 		This is a simple example of a Linux kernel module written in Rust.
 
+config VOIDBOX
+	tristate "Read-Once secure drop-box character device driver."
+	default n
+	help
+		Read-Once secure drop-box character device driver. The device allows User Space processes to write data into Kernel Memory.
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
