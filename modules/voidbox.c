@@ -24,13 +24,17 @@ static int major_number;
 static struct voidbox_dev void_device;
 
 ssize_t voidbox_read(struct file* file, char __user* buf, size_t count, loff_t* ppos) {
+    mutex_lock(&void_device.lock);
+
     int bytes_to_copy;
 
     if (void_device.len < 1) {
+        mutex_unlock(&void_device.lock);
         return 0;
     }
 
     if (*ppos >= void_device.len) {
+        mutex_unlock(&void_device.lock);
         return 0;
     }
 
@@ -40,6 +44,7 @@ ssize_t voidbox_read(struct file* file, char __user* buf, size_t count, loff_t* 
     }
 
     if (copy_to_user(buf, void_device.data + *ppos, bytes_to_copy)) {
+        mutex_unlock(&void_device.lock);
         return -EFAULT;
     }
 
@@ -47,6 +52,8 @@ ssize_t voidbox_read(struct file* file, char __user* buf, size_t count, loff_t* 
 
     void_device.data[0] = '\0';
     void_device.len = 0;
+
+    mutex_unlock(&void_device.lock);
 
     return bytes_to_copy;
 }
@@ -56,7 +63,7 @@ ssize_t voidbox_write(struct file* file, const char __user* buf, size_t count, l
 
     if (void_device.len > 0) {
         mutex_unlock(&void_device.lock);
-        return -EFAULT;
+        return -EBUSY;
     }
 
     int bytes_to_copy = (int)count;
