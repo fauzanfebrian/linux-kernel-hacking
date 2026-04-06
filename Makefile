@@ -24,6 +24,12 @@ menuconfig: ## Configure kernel options (ncurses)
 build: ## Compile the kernel with -j4
 	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) O=$(KERNEL_BUILD_DIR) -j4
 
+mrproper: ## Clean up kernel building
+	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) O=$(KERNEL_BUILD_DIR) KCONFIG_CONFIG=$(KERNEL_BUILD_DIR)/.config mrproper
+
+scripts_gdb: ## Clean up kernel building
+	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) O=$(KERNEL_BUILD_DIR) KCONFIG_CONFIG=$(KERNEL_BUILD_DIR)/.config scripts_gdb
+
 run: ## Boot User-Mode Linux with fs.img
 	$(KERNEL_BUILD_DIR)/linux ubd0=fs.img ubd1=minix.img root=/dev/ubda rw init=/bin/sh || true; \
 	stty sane
