@@ -16,6 +16,7 @@ help: ## Show help menu
 setup: ## Run setup scripts to fetch kernel and build FS
 	KERNEL_VER=$(KERNEL_VER) bash ./scripts/setup_env.sh
 	KERNEL_VER=$(KERNEL_VER) bash ./scripts/setup_fs.sh
+	KERNEL_VER=$(KERNEL_VER) bash ./scripts/setup_minix_fs.sh
 
 menuconfig: ## Configure kernel options (ncurses)
 	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) KCONFIG_CONFIG=$(KERNEL_BUILD_DIR)/.config menuconfig
@@ -24,7 +25,7 @@ build: ## Compile the kernel with -j4
 	$(MAKE) -C ./$(KERNEL_DIR) ARCH=$(ARCH) O=$(KERNEL_BUILD_DIR) -j4
 
 run: ## Boot User-Mode Linux with fs.img
-	$(KERNEL_BUILD_DIR)/linux ubd0=./fs.img root=/dev/ubda rw init=/bin/dash || true; \
+	$(KERNEL_BUILD_DIR)/linux ubd0=fs.img ubd1=minix.img root=/dev/ubda rw init=/bin/sh || true; \
 	stty sane
 
 gdb: ## Attach GDB to the kernel binary
