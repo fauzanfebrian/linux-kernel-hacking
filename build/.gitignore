@@ -1,0 +1,4 @@
+# this is build directory, ignore it
+*
+!.config
+!.gitignore
